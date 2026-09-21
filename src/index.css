@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-void text-ink font-body antialiased;
+    background-image:
+      linear-gradient(rgba(127, 184, 143, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(127, 184, 143, 0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  ::selection {
+    background: #C97B4A;
+    color: #0B0F0D;
+  }
+
+  :focus-visible {
+    outline: 2px solid #C97B4A;
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0B0F0D;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #232B27;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2C362F;
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply px-6 sm:px-10 lg:px-16 py-20 sm:py-24;
+  }
+
+  .container-w {
+    @apply max-w-content mx-auto w-full;
+  }
+
+  .pin-label {
+    @apply font-mono text-[13px] tracking-wide text-signal;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl sm:text-4xl font-medium text-ink;
+  }
+
+  .card {
+    @apply bg-panel border border-line rounded-md;
+  }
+}
+
+@keyframes trace-draw {
+  from { stroke-dashoffset: var(--trace-length, 1000); }
+  to { stroke-dashoffset: 0; }
+}
+
+.trace-path {
+  stroke-dasharray: var(--trace-length, 1000);
+  stroke-dashoffset: var(--trace-length, 1000);
+  animation: trace-draw 1.8s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
